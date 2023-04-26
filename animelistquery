@@ -1,0 +1,39 @@
+query ($name: String) {
+  MediaListCollection(
+    userName: $name
+    type: ANIME
+    status: COMPLETED
+    sort: SCORE_DESC
+    chunk: 1
+    perChunk: 10
+  ) {
+    lists {
+      name
+      entries {
+        score(format: POINT_10_DECIMAL)
+        media {
+          idMal
+          coverImage {
+            extraLarge
+          }
+          title {
+            english
+          }
+          recommendations(sort: RATING_DESC, perPage: 5) {
+            nodes {
+              mediaRecommendation {
+                idMal
+                coverImage {
+                  extraLarge
+                }
+                title {
+                  english
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

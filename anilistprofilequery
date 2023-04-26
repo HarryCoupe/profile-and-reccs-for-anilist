@@ -1,0 +1,65 @@
+query ($name: String) {
+  User(name: $name) {
+    avatar {
+      large
+    }
+    createdAt
+    siteUrl
+    bannerImage
+    statistics {
+      anime {
+        count
+        meanScore
+        episodesWatched
+        minutesWatched
+        genres(limit: 10, sort: COUNT_DESC) {
+          genre
+          count
+          meanScore
+        }
+      }
+      manga {
+        count
+        meanScore
+        chaptersRead
+        genres(limit: 10, sort: COUNT_DESC) {
+          genre
+          count
+          meanScore
+        }
+      }
+    }
+    favourites {
+      characters(perPage: 5) {
+        nodes {
+          image {
+            large
+          }
+          name {
+            full
+          }
+        }
+      }
+      anime(perPage: 5) {
+        nodes {
+          title {
+            english
+          }
+          coverImage {
+            large
+          }
+        }
+      }
+      manga(perPage: 5) {
+        nodes {
+          title {
+            english
+          }
+          coverImage {
+            large
+          }
+        }
+      }
+    }
+  }
+}
